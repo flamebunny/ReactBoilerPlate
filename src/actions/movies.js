@@ -1,4 +1,7 @@
+import * as apiService from "../api";
 import { getMoviesFromApiAsync } from "../api";
+
+
 
 export const GET_MOVIES = 'GET_MOVIES'
 export function getMovies(movies) {
@@ -23,7 +26,15 @@ export function moviesFetchAsync() {
     }
     dispatch(moviesFetch())
 
-    getMoviesFromApiAsync()
+    const url =  "https://facebook.github.io/react-native/movies.json"
+    const options = { }
+
+    apiService.get({ url, options })
+      .then(response => { console.log(response); return (response) })
+      .then(responseJson => {
+        return responseJson.movies
+      })
+      .then(response => { console.log(response); return (response) })
       .then(movies => dispatch(moviesFetchSuccess({ movies })))
       .catch(error => dispatch(moviesFetchFailed({ error })))
   }

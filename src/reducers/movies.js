@@ -3,27 +3,27 @@ export function moviesReducer(state = { fetching: false, movies: [], errorMessag
     case 'GET_MOVIES':
       console.log(action)
       return {
-        ...state,        
+        ...state,
         movies: action.movies
       }
-    
+
     case 'MOVIES_FETCH':
       return {
-        ...state,        
+        ...state,
         fetching: true
-      }  
+      }
 
     case 'MOVIES_FETCH_SUCCESS':
       return {
-        ...state,        
+        ...state,
         fetching: false,
         errorMessage: '',
         movies: action.movies
       }
-      
+
     case 'MOVIES_FETCH_FAILED':
       return {
-        ...state,        
+        ...state,
         fetching: false,
         errorMessage: action.errorMessage
       }
